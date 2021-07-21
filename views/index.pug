@@ -1,0 +1,10 @@
+extends base.pug
+
+block title 
+    title Passport Login 
+
+block content 
+    if currentUser
+        h1(style = "text-align : center") Welcome #{currentUser.name}
+    else 
+        h1(style = "text-align : center") Welcome

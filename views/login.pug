@@ -1,0 +1,20 @@
+extends base.pug 
+
+block title 
+    title Login page 
+
+block content
+    div.container
+        h1( style = "text-align: center") Login Page
+        div(style = "margin: auto ; width: 30%")
+            form(action="/login" method = "post" ) 
+                div.form-group
+                    label(for="email") Email:
+                    input(type="email",class = "form-control" , name="username",id="email",placeholder = "Enter Your Email")
+                div.form-group
+                    label(for="password") Password:
+                    input(type="password",class = "form-control" , name="password",id="password",placeholder= "Password")
+                div( class = "form-group")
+                    button(type = "submit" , class = "btn btn-lg btn-primary btn-block" style= "margin: auto ; width: 30%") Login 
+            div(style = "text-align: center") 
+                p New to the Site? #[a(href="/register") Register]
