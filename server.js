@@ -14,7 +14,7 @@ const loginRoute = require('./routes/login');
 const registerRoute = require('./routes/register');
 const user = require('./models/user');
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/UserAuthentication',{useNewUrlParser: true , useUnifiedTopology : true,useCreateIndex: true})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/UserAuthentication',{useNewUrlParser: true , useUnifiedTopology : true,useCreateIndex: true})
 let db = mongoose.connection;
 mongoose.Promise = global.Promise;
 db.on('error',console.error.bind(console,'MongoDB connection error: '));
