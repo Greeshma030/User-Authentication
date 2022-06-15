@@ -8,6 +8,8 @@ const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
+const session = require("express-session")
+const MongoStore = require('connect-mongo')
 
 const indexRoute = require('./routes/index');
 const loginRoute = require('./routes/login');
@@ -28,9 +30,10 @@ app.use(bodyParser.urlencoded({ extended : false }));
 app.use(flash());
 
 // passport configuration
-app.use(require("express-session")({
+app.use(session({
     secret : process.env.SECRET,
-    resave : false,
+    store: MongoStore.create({mongoUrl:process.env.MONGODB_URI || 'mongodb://localhost/UserAuthentication', useUnifiedTopology: true}),
+    resave: false,
     saveUninitialized: false,
 }));
 app.use(passport.initialize());
