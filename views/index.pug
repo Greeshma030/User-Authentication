@@ -1,10 +1,13 @@
 extends base.pug
 
 block title 
-    title Passport Login 
+    title Home 
 
 block content 
-    if currentUser
-        h1(style = "text-align : center") Welcome #{currentUser.name}
-    else 
-        h1(style = "text-align : center") Welcome
+    h1(style = "text-align : center").mt-4.p-2 Welcome #{currentUser.name}
+    button.mt-2.btn.btn-danger #[a(href="/logout") Log Out]
+    if error && error.length > 0
+        div.message.text-danger * #{error}
+    if success && success.length > 0
+        div.message.text-primary * #{success} 
+

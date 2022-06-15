@@ -1,6 +1,4 @@
-if(process.env.NODE_ENV !== 'production'){
-    require('dotenv').config();
-}
+require('dotenv').config();
 
 const express = require("express");
 const app = express();
@@ -16,7 +14,7 @@ const loginRoute = require('./routes/login');
 const registerRoute = require('./routes/register');
 const user = require('./models/user');
 
-mongoose.connect('mongodb://localhost/passportlogin',{useNewUrlParser: true , useUnifiedTopology : true,useCreateIndex: true})
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/UserAuthentication',{useNewUrlParser: true , useUnifiedTopology : true,useCreateIndex: true})
 let db = mongoose.connection;
 mongoose.Promise = global.Promise;
 db.on('error',console.error.bind(console,'MongoDB connection error: '));
@@ -48,9 +46,9 @@ app.use((req,res,next)=>{
     next();
 });
 
-app.use('/',indexRoute);
 app.use('/login',loginRoute);
 app.use('/register',registerRoute);
+app.use('/',indexRoute);
 
 app.listen(port , ()=>{
     console.log(`Application started successfully on port ${port}`);

@@ -4,20 +4,22 @@ block title
     title Register Page
 
 block content
-    div.container
-        h1( style = "text-align: center") Sign Up Page
-        div(style = "margin: auto ; width: 30%")
-            form(action="/register" method = "post") 
-                div.form-group
-                    label(for="name") Name:
-                    input(type="name",class = "form-control" name="name" id="name" placeholder = "Enter Your Name")
-                div.form-group
-                    label(for="email") Email:
-                    input(type="email",class = "form-control" name="username" id="email" placeholder = "Enter Your Email")
-                div.form-group
-                    label(for="password") Password:
-                    input(type="password",class = "form-control" name="password" id="password" placeholder= "Password")
-                div( class = "form-group")
-                    button(type = "submit" class = "btn btn-lg btn-primary btn-block" style = "margin: auto ; width: 30%") Register
-            div(style = "text-align: center") 
-                p Already have an account? #[a(href="/login") Login]
+    div.form-main
+        form(action="/register" method = "post")
+            h3.mb-4 SignUp Page 
+            div.mb-3.form-floating
+                input(type="name" name="name" placeholder = "Enter Your Name").form-control#name
+                label(for="name") Name
+            div.mb-3.form-floating
+                input(type="email" placeholder="abc@gmail.com" name="username").form-control#email
+                label(for="email") Email Address
+            div.mb-3.form-floating
+                input(type="password" placeholder="Password" name="password").form-control#password
+                label(for="password") Password
+            if error && error.length > 0
+                div.message.text-danger * #{error}
+            if success && success.length > 0
+                div.message.text-primary * #{success}
+            button(type="submit").btn.btn-primary.btn-lg.w-100 Register
+        div(style = "text-align: center").mt-4
+            p Already have an account? #[a(href="/login") Login]
