@@ -43,5 +43,6 @@ button a {
 .message {
     font-size: 1.2em;
     padding: 1px;
+    margin-top: 1rem;
     margin-bottom: 1rem;
 }
